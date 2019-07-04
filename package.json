@@ -1,7 +1,9 @@
 {
-  "name": "aframe-mouse-dragndrop",
+  "name": "aframe-mouse-dragndrop-component",
   "version": "1.0.0",
   "description": "Drag-n-drop entites using mouse cursor.",
+  "keywords": ["aframe", "drag-n-drop", "aframe-vr", "webvr", "aframe-component"],
+  "url": "https://github.com/extraymond/aframe-mouse-dragndrop",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
