@@ -1,6 +1,6 @@
 {
   "name": "aframe-mouse-dragndrop-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Drag-n-drop entites using mouse cursor.",
   "keywords": [
     "aframe",
