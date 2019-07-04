@@ -1,0 +1,14 @@
+{
+  "name": "aframe-mouse-dragndrop",
+  "version": "1.0.0",
+  "description": "Drag-n-drop entites using mouse cursor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raymond Yeh <extraymond@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aframe": "^0.9.2"
+  }
+}
