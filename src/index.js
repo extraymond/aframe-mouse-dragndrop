@@ -2,9 +2,7 @@ import AFRAME from "aframe";
 
 AFRAME.registerSystem("track-cursor", {
   init: function() {
-    this.el.addEventListener("camera-set-active", () => {
-      this.el.setAttribute("cursor", { rayOrigin: "mouse" });
-    })
+    this.el.setAttribute("cursor", { rayOrigin: "mouse" });
   }
 });
 
@@ -34,7 +32,7 @@ AFRAME.registerComponent("dragndrop", {
       } else if (e.detail == "dragging") {
         this.dist = this.el.object3D.position
           .clone()
-          .sub(this.camera.object3D.position)
+          .sub(this.el.sceneEl.camera.el.object3D.position)
           .length();
       }
     },
@@ -48,8 +46,6 @@ AFRAME.registerComponent("dragndrop", {
   },
   init: function() {
     this.range = 0;
-    this.scene = this.el.sceneEl;
-    this.camera = this.scene.camera.el;
     this.dist = 0;
     this.direction = new AFRAME.THREE.Vector3();
     this.target = new AFRAME.THREE.Vector3();
@@ -62,11 +58,12 @@ AFRAME.registerComponent("dragndrop", {
     });
   },
   updateDirection: function() {
-    this.direction.copy(this.scene.getAttribute("raycaster").direction);
+    this.direction.copy(this.el.sceneEl.getAttribute("raycaster").direction);
   },
   updateTarget: function() {
+    let camera = this.el.sceneEl.camera.el
     this.target.copy(
-      this.camera.object3D.position
+      camera.object3D.position
         .clone()
         .add(this.direction.clone().multiplyScalar(this.dist + this.range))
     );
