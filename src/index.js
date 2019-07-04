@@ -3,7 +3,6 @@ import AFRAME from "aframe";
 AFRAME.registerSystem("track-cursor", {
   init: function() {
     this.el.addEventListener("camera-set-active", () => {
-      console.log("camera up")
       this.el.setAttribute("cursor", { rayOrigin: "mouse" });
     })
   }
@@ -50,10 +49,7 @@ AFRAME.registerComponent("dragndrop", {
   init: function() {
     this.range = 0;
     this.scene = this.el.sceneEl;
-    this.camera = null
-    this.el.sceneEl.addEventListener("camera-set-active", () => {
-      this.camera = this.scene.camera.el;
-    })
+    this.camera = this.scene.camera.el;
     this.dist = 0;
     this.direction = new AFRAME.THREE.Vector3();
     this.target = new AFRAME.THREE.Vector3();
