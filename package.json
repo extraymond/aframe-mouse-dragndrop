@@ -9,7 +9,8 @@
     "webvr",
     "aframe-component"
   ],
-  "home": "https://github.com/extraymond/aframe-mouse-dragndrop",
+  "homepage": "https://github.com/extraymond/aframe-mouse-dragndrop",
+  "repository": "extraymond/aframe-mouse-dragndrop",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
