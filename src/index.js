@@ -7,46 +7,46 @@ AFRAME.registerSystem("track-cursor", {
 });
 
 AFRAME.registerComponent("track-cursor", {
-  events: {
-    mousedown: function() {
-      this.el.sceneEl.camera.el.setAttribute("look-controls", {
-        enabled: false
-      });
-      this.el.addState("tracking");
-    },
-    mouseup: function() {
-      this.el.sceneEl.camera.el.setAttribute("look-controls", {
-        enabled: true
-      });
-      this.el.removeState("tracking");
-    }
-  }
+  init: function() {
+    this.el.addEventListener("mousedown", e => {
+      if (this.el.is("cursor-hovered")) {
+        this.el.sceneEl.camera.el.setAttribute("look-controls", {
+          enabled: false
+        });
+        this.el.addState("dragging");
+      }
+    })
+    this.el.addEventListener("click", e => {
+      if (this.el.is("dragging")) {
+        this.el.sceneEl.camera.el.setAttribute("look-controls", {
+          enabled: true
+        });
+        this.el.removeState("dragging");
+      }
+    })
+  },
 });
 
 AFRAME.registerComponent("dragndrop", {
   dependencies: ["track-cursor"],
-  events: {
-    stateadded: function(e) {
-      if (e.detail == "tracking") {
-        this.el.addState("dragging");
-      } else if (e.detail == "dragging") {
+  init: function() {
+    this.range = 0;
+    this.dist = 0;
+
+    this.el.addEventListener("stateadded", e => {
+      if (e.detail == "dragging") {
         this.dist = this.el.object3D.position
           .clone()
           .sub(this.el.sceneEl.camera.el.object3D.position)
           .length();
       }
-    },
-    stateremoved: function(e) {
-      if (e.detail == "tracking") {
+    })
+    this.el.addEventListener("stateremoved", e => {
+      if (e.detail == "dragging") {
         this.range = 0;
-        this.el.removeState("dragging");
-      } else if (e.detail == "dragging") {
       }
-    }
-  },
-  init: function() {
-    this.range = 0;
-    this.dist = 0;
+    })
+
     this.direction = new AFRAME.THREE.Vector3();
     this.target = new AFRAME.THREE.Vector3();
     document.addEventListener("wheel", e => {
