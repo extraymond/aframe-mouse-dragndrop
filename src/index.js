@@ -35,15 +35,11 @@ AFRAME.registerComponent("dragndrop", {
 
     this.el.addEventListener("stateadded", e => {
       if (e.detail == "dragging") {
+        this.range = 0;
         this.dist = this.el.object3D.position
           .clone()
           .sub(this.el.sceneEl.camera.el.object3D.position)
           .length();
-      }
-    })
-    this.el.addEventListener("stateremoved", e => {
-      if (e.detail == "dragging") {
-        this.range = 0;
       }
     })
 
@@ -70,6 +66,7 @@ AFRAME.registerComponent("dragndrop", {
   },
   tick: function() {
     if (this.el.is("dragging")) {
+      console.log(this.dist, this.range)
       this.updateDirection();
       this.updateTarget();
       this.el.object3D.position.copy(this.target);

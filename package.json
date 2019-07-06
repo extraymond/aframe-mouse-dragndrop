@@ -13,7 +13,8 @@
   "repository": "extraymond/aframe-mouse-dragndrop",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "parcel example/index.html",
+    "build": "parcel build src/index.js"
   },
   "author": "Raymond Yeh <extraymond@gmail.com>",
   "license": "MIT",

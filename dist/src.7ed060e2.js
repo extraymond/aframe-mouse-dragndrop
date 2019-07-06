@@ -72685,12 +72685,8 @@ _aframe.default.registerComponent("dragndrop", {
     this.dist = 0;
     this.el.addEventListener("stateadded", function (e) {
       if (e.detail == "dragging") {
-        _this2.dist = _this2.el.object3D.position.clone().sub(_this2.el.sceneEl.camera.el.object3D.position).length();
-      }
-    });
-    this.el.addEventListener("stateremoved", function (e) {
-      if (e.detail == "dragging") {
         _this2.range = 0;
+        _this2.dist = _this2.el.object3D.position.clone().sub(_this2.el.sceneEl.camera.el.object3D.position).length();
       }
     });
     this.direction = new _aframe.default.THREE.Vector3();
@@ -72712,6 +72708,7 @@ _aframe.default.registerComponent("dragndrop", {
   },
   tick: function tick() {
     if (this.el.is("dragging")) {
+      console.log(this.dist, this.range);
       this.updateDirection();
       this.updateTarget();
       this.el.object3D.position.copy(this.target);
@@ -72746,7 +72743,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44383" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38639" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
