@@ -14,7 +14,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "parcel example/index.html",
-    "build": "parcel build src/index.js"
+    "build": "parcel build src/index.js --no-source-maps"
   },
   "author": "Raymond Yeh <extraymond@gmail.com>",
   "license": "MIT",
