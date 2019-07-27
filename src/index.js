@@ -1,4 +1,6 @@
-import AFRAME from "aframe";
+if (window.AFRAME == null) {
+  console.error("aframe not found, please import it before this component.")
+}
 
 AFRAME.registerSystem("track-cursor", {
   init: function() {
